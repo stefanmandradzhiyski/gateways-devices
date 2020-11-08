@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS gateways_devices;
+
+CREATE TABLE IF NOT EXISTS gateway (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	serial_number VARCHAR(8) NOT NULL UNIQUE,
+	name VARCHAR(25) NOT NULL,
+	ip_address VARCHAR(15) NOT NULL,
+	CONSTRAINT gateway_pk PRIMARY KEY (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS device (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	vendor VARCHAR(50) NOT NULL,
+	date_created DATE NOT NULL,
+	status VARCHAR(8) NOT NULL,
+	gateway_id INT(11),
+	CONSTRAINT device_pk PRIMARY KEY (id),
+	CONSTRAINT device_fk_gateway FOREIGN KEY (gateway_id) REFERENCES gateway(id) ON DELETE SET NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
