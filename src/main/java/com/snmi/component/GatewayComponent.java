@@ -4,8 +4,10 @@ import com.snmi.domain.Gateway;
 import com.snmi.exception.ConflictException;
 import com.snmi.exception.NotFoundException;
 import com.snmi.repository.GatewayRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
 public class GatewayComponent {
 
@@ -13,10 +15,6 @@ public class GatewayComponent {
     private static final String SERIAL_NUMBER_EXISTS = "Serial number (%s) already exists";
 
     private final GatewayRepository gatewayRepository;
-
-    public GatewayComponent(GatewayRepository gatewayRepository) {
-        this.gatewayRepository = gatewayRepository;
-    }
 
     public Gateway findByIdOrThrowException(Integer gatewayId) {
         return gatewayRepository.findById(gatewayId)

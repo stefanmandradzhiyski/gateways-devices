@@ -10,6 +10,7 @@ import com.snmi.dto.DeviceAssociationDTO;
 import com.snmi.enums.Action;
 import com.snmi.mapper.GatewayMapper;
 import com.snmi.repository.GatewayRepository;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class GatewayService {
 
@@ -27,14 +29,6 @@ public class GatewayService {
     private final GatewayComponent gatewayComponent;
     private final DeviceComponent deviceComponent;
     private final GatewayMapper gatewayMapper;
-
-    public GatewayService(GatewayRepository gatewayRepository, GatewayComponent gatewayComponent,
-                          DeviceComponent deviceComponent, GatewayMapper gatewayMapper) {
-        this.gatewayRepository = gatewayRepository;
-        this.gatewayComponent = gatewayComponent;
-        this.deviceComponent = deviceComponent;
-        this.gatewayMapper = gatewayMapper;
-    }
 
     @Transactional
     public FullGatewayDTO createGateway(GatewayDTO gatewayDTO) {

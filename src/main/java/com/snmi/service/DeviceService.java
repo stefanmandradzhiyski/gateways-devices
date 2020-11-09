@@ -6,6 +6,7 @@ import com.snmi.dto.DeviceDTO;
 import com.snmi.dto.FullDeviceDTO;
 import com.snmi.mapper.DeviceMapper;
 import com.snmi.repository.DeviceRepository;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class DeviceService {
 
@@ -22,12 +24,6 @@ public class DeviceService {
     private final DeviceRepository deviceRepository;
     private final DeviceComponent deviceComponent;
     private final DeviceMapper deviceMapper;
-
-    public DeviceService(DeviceRepository deviceRepository, DeviceComponent deviceComponent, DeviceMapper deviceMapper) {
-        this.deviceRepository = deviceRepository;
-        this.deviceComponent = deviceComponent;
-        this.deviceMapper = deviceMapper;
-    }
 
     @Transactional
     public FullDeviceDTO createDevice(DeviceDTO deviceDTO) {
